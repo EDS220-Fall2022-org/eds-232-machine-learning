@@ -1,0 +1,1530 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{listings}
+\newcommand{\passthrough}[1]{#1}
+\lstset{defaultdialect=[5.3]Lua}
+\lstset{defaultdialect=[x86masm]Assembler}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\lstset{
+  breaklines=true
+}
+<!--radix_placeholder_navigation_in_header-->
+<meta name="distill:offset" content=""/>
+
+<script type="application/javascript">
+
+  window.headroom_prevent_pin = false;
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // initialize headroom for banner
+    var header = $('header').get(0);
+    var headerHeight = header.offsetHeight;
+    var headroom = new Headroom(header, {
+      tolerance: 5,
+      onPin : function() {
+        if (window.headroom_prevent_pin) {
+          window.headroom_prevent_pin = false;
+          headroom.unpin();
+        }
+      }
+    });
+    headroom.init();
+    if(window.location.hash)
+      headroom.unpin();
+    $(header).addClass('headroom--transition');
+
+    // offset scroll location for banner on hash change
+    // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+    window.addEventListener("hashchange", function(event) {
+      window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+    });
+
+    // responsive menu
+    $('.distill-site-header').each(function(i, val) {
+      var topnav = $(this);
+      var toggle = topnav.find('.nav-toggle');
+      toggle.on('click', function() {
+        topnav.toggleClass('responsive');
+      });
+    });
+
+    // nav dropdowns
+    $('.nav-dropbtn').click(function(e) {
+      $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+      $(this).parent().siblings('.nav-dropdown')
+         .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $("body").click(function(e){
+      $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $(".nav-dropdown").click(function(e){
+      e.stopPropagation();
+    });
+  });
+</script>
+
+<style type="text/css">
+
+/* Theme (user-documented overrideables for nav appearance) */
+
+.distill-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #0F2E3D;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.distill-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.distill-site-nav a:hover {
+  color: white;
+}
+
+@media print {
+  .distill-site-nav {
+    display: none;
+  }
+}
+
+.distill-site-header {
+
+}
+
+.distill-site-footer {
+
+}
+
+
+/* Site Header */
+
+.distill-site-header {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.distill-site-header .nav-left {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header .nav-left {
+    margin-left: 0;
+  }
+}
+
+
+.distill-site-header .nav-right {
+  float: right;
+  margin-right: 8px;
+}
+
+.distill-site-header a,
+.distill-site-header .title {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 10px 14px 10px;
+}
+
+.distill-site-header .title {
+  font-size: 18px;
+  min-width: 150px;
+}
+
+.distill-site-header .logo {
+  padding: 0;
+}
+
+.distill-site-header .logo img {
+  display: none;
+  max-height: 20px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
+.distill-site-header .nav-image img {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -3px;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .distill-site-header .logo img {
+    display: inline-block;
+  }
+  .distill-site-header .nav-left {
+    margin-left: 20px;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 20px;
+  }
+  .distill-site-header .title {
+    padding-left: 12px;
+  }
+}
+
+
+.distill-site-header .nav-toggle {
+  display: none;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-dropdown .nav-dropbtn {
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 10px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  margin-top: 1px;
+  z-index: 2;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 2px;
+  white-space: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.nav-dropdown-content hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown-active {
+  display: block;
+}
+
+.nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+  color: black;
+  padding: 6px 24px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav-dropdown-content .nav-dropdown-header {
+  display: block;
+  padding: 5px 24px;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.nav-dropdown:hover .nav-dropbtn {
+  color: white;
+}
+
+.nav-dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-right .nav-dropdown-content {
+  margin-left: -45%;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+  .distill-site-header a.nav-toggle {
+    float: right;
+    display: block;
+  }
+  .distill-site-header .title {
+    margin-left: 0;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 0;
+  }
+  .distill-site-header {
+    overflow: hidden;
+  }
+  .nav-right .nav-dropdown-content {
+    margin-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-header.responsive {position: relative; min-height: 500px; }
+  .distill-site-header.responsive a.nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .distill-site-header.responsive a,
+  .distill-site-header.responsive .nav-dropdown {
+    display: block;
+    text-align: left;
+  }
+  .distill-site-header.responsive .nav-left,
+  .distill-site-header.responsive .nav-right {
+    width: 100%;
+  }
+  .distill-site-header.responsive .nav-dropdown {float: none;}
+  .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+  .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Site Footer */
+
+.distill-site-footer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+/* Headroom */
+
+d-title {
+  padding-top: 6rem;
+}
+
+@media print {
+  d-title {
+    padding-top: 4rem;
+  }
+}
+
+.headroom {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headroom--transition {
+  transition: all .4s ease-in-out;
+}
+
+.headroom--unpinned {
+  top: -100px;
+}
+
+.headroom--pinned {
+  top: 0;
+}
+
+/* adjust viewport for navbar height */
+/* helps vertically center bootstrap (non-distill) content */
+.min-vh-100 {
+  min-height: calc(100vh - 100px) !important;
+}
+
+</style>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+<script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
+<script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
+<script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
+
+<script type="application/javascript">
+
+function getMeta(metaName) {
+  var metas = document.getElementsByTagName('meta');
+  for (let i = 0; i < metas.length; i++) {
+    if (metas[i].getAttribute('name') === metaName) {
+      return metas[i].getAttribute('content');
+    }
+  }
+  return '';
+}
+
+function offsetURL(url) {
+  var offset = getMeta('distill:offset');
+  return offset ? offset + '/' + url : url;
+}
+
+function createFuseIndex() {
+
+  // create fuse index
+  var options = {
+    keys: [
+      { name: 'title', weight: 20 },
+      { name: 'categories', weight: 15 },
+      { name: 'description', weight: 10 },
+      { name: 'contents', weight: 5 },
+    ],
+    ignoreLocation: true,
+    threshold: 0
+  };
+  var fuse = new window.Fuse([], options);
+
+  // fetch the main search.json
+  return fetch(offsetURL('search.json'))
+    .then(function(response) {
+      if (response.status == 200) {
+        return response.json().then(function(json) {
+          // index main articles
+          json.articles.forEach(function(article) {
+            fuse.add(article);
+          });
+          // download collections and index their articles
+          return Promise.all(json.collections.map(function(collection) {
+            return fetch(offsetURL(collection)).then(function(response) {
+              if (response.status === 200) {
+                return response.json().then(function(articles) {
+                  articles.forEach(function(article) {
+                    fuse.add(article);
+                  });
+                })
+              } else {
+                return Promise.reject(
+                  new Error('Unexpected status from search index request: ' +
+                            response.status)
+                );
+              }
+            });
+          })).then(function() {
+            return fuse;
+          });
+        });
+
+      } else {
+        return Promise.reject(
+          new Error('Unexpected status from search index request: ' +
+                      response.status)
+        );
+      }
+    });
+}
+
+window.document.addEventListener("DOMContentLoaded", function (event) {
+
+  // get search element (bail if we don't have one)
+  var searchEl = window.document.getElementById('distill-search');
+  if (!searchEl)
+    return;
+
+  createFuseIndex()
+    .then(function(fuse) {
+
+      // make search box visible
+      searchEl.classList.remove('hidden');
+
+      // initialize autocomplete
+      var options = {
+        autoselect: true,
+        hint: false,
+        minLength: 2,
+      };
+      window.autocomplete(searchEl, options, [{
+        source: function(query, callback) {
+          const searchOptions = {
+            isCaseSensitive: false,
+            shouldSort: true,
+            minMatchCharLength: 2,
+            limit: 10,
+          };
+          var results = fuse.search(query, searchOptions);
+          callback(results
+            .map(function(result) { return result.item; })
+          );
+        },
+        templates: {
+          suggestion: function(suggestion) {
+            var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
+              ? `<img src="${offsetURL(suggestion.preview)}"</img>`
+              : '';
+            var html = `
+              <div class="search-item">
+                <h3>${suggestion.title}</h3>
+                <div class="search-item-description">
+                  ${suggestion.description || ''}
+                </div>
+                <div class="search-item-preview">
+                  ${img}
+                </div>
+              </div>
+            `;
+            return html;
+          }
+        }
+      }]).on('autocomplete:selected', function(event, suggestion) {
+        window.location.href = offsetURL(suggestion.path);
+      });
+      // remove inline display style on autocompleter (we want to
+      // manage responsive display via css)
+      $('.algolia-autocomplete').css("display", "");
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+
+});
+
+</script>
+
+<style type="text/css">
+
+.nav-search {
+  font-size: x-small;
+}
+
+/* Algolioa Autocomplete */
+
+.algolia-autocomplete {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: sub;
+  background-color: white;
+  color: black;
+  padding: 6px;
+  padding-top: 8px;
+  padding-bottom: 0;
+  border-radius: 6px;
+  border: 1px #0F2E3D solid;
+  width: 180px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-nav .algolia-autocomplete {
+    display: none;
+    visibility: hidden;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete {
+    display: inline-block;
+    visibility: visible;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
+    margin-left: 0;
+    width: 400px;
+    max-height: 400px;
+  }
+}
+
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+  width: 90%;
+  outline: none;
+  border: none;
+}
+
+.algolia-autocomplete .aa-hint {
+  color: #999;
+}
+.algolia-autocomplete .aa-dropdown-menu {
+  width: 550px;
+  max-height: 70vh;
+  overflow-x: visible;
+  overflow-y: scroll;
+  padding: 5px;
+  margin-top: 3px;
+  margin-left: -150px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #999;
+  border-top: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 5px 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
+  border-bottom: none;
+  margin-bottom: 2px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
+  overflow: hidden;
+  font-size: 0.8em;
+  line-height: 1.4em;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+  font-size: 1rem;
+  margin-block-start: 0;
+  margin-block-end: 5px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
+  display: inline-block;
+  overflow: hidden;
+  height: 2.8em;
+  width: 80%;
+  margin-right: 4%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
+  display: inline-block;
+  width: 15%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
+  height: 3em;
+  width: auto;
+  display: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
+  display: initial;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: #eee;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+</style>
+
+
+<!--/radix_placeholder_navigation_in_header-->
+<!--radix_placeholder_site_in_header-->
+<!--/radix_placeholder_site_in_header-->
+
+<style type="text/css">
+body {
+  padding-top: 60px;
+}
+</style>
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    sans-serif;
+  --mono-font:       monospace;
+  --body-font:       sans-serif;
+  --navbar-font:     sans-serif;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+/*-- Additional custom styles --*/
+/* Add any additional CSS rules below                      */
+</style>
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+/* Header font */
+@import url('https://fonts.googleapis.com/css2?family=Sanchez&display=swap');
+
+/* Body font */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400&display=swap');
+
+/* Code font (Roboto Mono) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&display=swap');
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --title-weight:    400;
+  --body-size:       1.06rem;
+  --code-size:       14px;
+  --aside-size:      12px;
+  --fig-cap-size:    13px;
+  /*-- Main font colors --*/
+  --title-color:     #003660;
+  --title-weight:    400;
+  --header-color:    rgba(4, 124, 145, 1);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    Sanchez;
+  --mono-font:       Roboto Mono;
+  --body-font:       Nunito Sans;
+  --navbar-font:     Nunito Sans;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       20px;
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        18px;
+  --hover-color:      white;
+  --bkgd-color:       #047C91;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #003660;
+}
+
+/*-- Additional custom styles --*/
+/* Add any additional CSS rules below                      */
+
+d-article h2 {
+    grid-column: text;
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+    padding-top: 20px;
+}
+
+d-article h3 {
+    grid-column: text;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+}
+
+a.title {
+  font-style: bold;
+}
+
+a, .nav-dropdown .nav-dropbtn {
+  font-weight: 500;
+}
+
+/* Set colors for headers */
+d-article h1, d-article h2, d-article h3, d-article h4, d-article h5, d-article h6 {
+    color: rgba(4, 124, 145, 0.8);
+}
+
+/* Formatting tables (can update here or individually) */
+table, td, tr, th {
+  border-collapse: collapse;
+  font-family: Nunito Sans;
+  border: 1px solid gainsboro;
+  vertical-align: top;
+}
+
+d-article table th, d-article table td {
+    font-size: 15px;
+    padding: 2px 8px;
+    border: 1px solid gainsboro;
+}
+
+/* Code style formatting of text */
+code {
+  font-family: Roboto Mono;
+}
+
+.distill-site-header a, .distill-site-header .title {
+    text-align: left;
+    padding: 14px 14px 14px 14px;
+}
+
+d-title h1 {
+    grid-column: text;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+}
+
+/* Update toc list font */
+.d-contents nav ul li {
+    font-size: 20px;
+}
+
+/* Update overall layout (body width) */
+@media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 0.5fr [page-start kicker-start] 30px [middle-start] 50px [text-start kicker-end] 90px 90px 90px 90px 90px 90px 90px 90px [text-end gutter-start] 30px [middle-end] 50px [page-end gutter-end] 0.5fr [screen-end];
+      grid-column-gap: 20px;
+    }
+
+/* Change navbar dropdown menu bg color */
+.nav-dropdown-content a:hover {
+    background-color: #003660;
+    color: black;
+}
+</style>
+<style type="text/css">
+/* base style */
+
+/* FONT FAMILIES */
+
+:root {
+  --heading-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono-default: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  --body-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+body,
+.posts-list .post-preview p,
+.posts-list .description p {
+  font-family: var(--body-font), var(--body-default);
+}
+
+h1, h2, h3, h4, h5, h6,
+.posts-list .post-preview h2,
+.posts-list .description h2 {
+  font-family: var(--heading-font), var(--heading-default);
+}
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: var(--mono-font), var(--mono-default);
+}
+
+
+/*-- TITLE --*/
+d-title h1,
+.posts-list > h1 {
+  color: var(--title-color, black);
+}
+
+d-title h1 {
+  font-size: var(--title-size, 50px);
+}
+
+/*-- HEADERS --*/
+d-article h1,
+d-article h2,
+d-article h3,
+d-article h4,
+d-article h5,
+d-article h6 {
+  color: var(--header-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- BODY --*/
+d-article > p,  /* only text inside of <p> tags */
+d-article > ul, /* lists */
+d-article > ol {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+  font-size: var(--body-size, 1.06rem);
+}
+
+
+/*-- CODE --*/
+d-article div.sourceCode code,
+d-article pre code {
+  font-size: var(--code-size, 14px);
+}
+
+/*-- ASIDE --*/
+d-article aside {
+  font-size: var(--aside-size, 12px);
+  color: var(--aside-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- FIGURE CAPTIONS --*/
+figure .caption,
+figure figcaption,
+.figure .caption {
+  font-size: var(--fig-cap-size, 13px);
+  color: var(--fig-cap-color, rgba(0, 0, 0, 0.6));
+}
+
+/*-- METADATA --*/
+d-byline h3 {
+  font-size: var(--heading-size, 0.6rem);
+  color: var(--heading-color, rgba(0, 0, 0, 0.5));
+}
+
+d-byline {
+  font-size: var(--body-size, 0.8rem);
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+d-byline a,
+d-article d-byline a {
+  color: var(--body-color, rgba(0, 0, 0, 0.8));
+}
+
+/*-- TABLE OF CONTENTS --*/
+.d-contents nav h3 {
+  font-size: var(--heading-size, 18px);
+}
+
+.d-contents nav a {
+  font-size: var(--contents-size, 13px);
+}
+
+/*-- APPENDIX --*/
+d-appendix h3 {
+  font-size: var(--heading-size, 15px);
+  color: var(--heading-color, rgba(0, 0, 0, 0.65));
+}
+
+d-appendix {
+  font-size: var(--text-size, 0.8em);
+  color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+d-appendix d-footnote-list a.footnote-backlink {
+  color: var(--text-color, rgba(0, 0, 0, 0.5));
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+.distill-site-header .title {
+  font-size: var(--title-size, 18px);
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.distill-site-header a,
+.nav-dropdown .nav-dropbtn {
+  font-family: var(--navbar-font), var(--heading-default);
+}
+
+.nav-dropdown .nav-dropbtn {
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  font-size: var(--text-size, 15px);
+}
+
+.distill-site-header a:hover,
+.nav-dropdown:hover .nav-dropbtn {
+  color: var(--hover-color, white);
+}
+
+.distill-site-header {
+  font-size: var(--text-size, 15px);
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer {
+  font-size: var(--text-size, 15px);
+  color: var(--text-color, rgba(255, 255, 255, 0.8));
+  background-color: var(--bkgd-color, #0F2E3D);
+}
+
+.distill-site-footer a:hover {
+  color: var(--hover-color, white);
+}</style>
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Cutler\_Lab2},
+  pdfauthor={Victoria Cutler},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Cutler\_Lab2}
+\author{Victoria Cutler}
+\date{2023-01-18}
+
+\begin{document}
+\maketitle
+
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="index.html" class="title">EDS 232</a>
+</div>
+<div class="nav-right">
+<a href="index.html">Home</a>
+<a href="assignments.html">Assignments</a>
+<a href="https://github.com/MaRo406/eds-232-machine-learning">
+<i class="fab fa-github" aria-hidden="true"></i>
+</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+Today we will be continuing the pumpkin case study from last week. We
+will be using the data that you cleaned and split last time
+(pumpkins\_train) and will be comparing our results today to those you
+have already obtained, so open and run your Lab 1 .Rmd as a first step
+so those objects are available in your Environment (unless you created
+an R Project last time, in which case, kudos to you!).
+
+Once you have done that, we'll start today's lab by specifying a recipe
+for a polynomial model. First we specify a recipe that identifies our
+variables and data, converts package to a numerical form, and then add a
+polynomial effect with step\_poly()
+
+\begin{lstlisting}[language=R]
+# Specify a recipe
+poly_pumpkins_recipe <-
+  recipe(price ~ package, data = pumpkins_train) %>%
+  step_integer(all_predictors(), zero_based = TRUE) %>% 
+  step_poly(all_predictors(), degree = 4)
+\end{lstlisting}
+
+How did that work? Choose another value for degree if you need to. Later
+we will learn about model tuning that will let us do things like find
+the optimal value for degree. For now, we'd like to have a flexible
+model, so find the highest value for degree that is consistent with our
+data.
+
+Polynomial regression is still linear regression, so our model
+specification looks similar to before.
+
+\begin{lstlisting}[language=R]
+# Create a model specification called poly_spec
+poly_spec <- linear_reg() %>% 
+  set_engine("lm") %>% 
+  set_mode("regression")
+\end{lstlisting}
+
+Question 1: Now take the recipe and model specification that just
+created and bundle them into a workflow called poly\_wf.
+
+\begin{lstlisting}[language=R]
+# Question 1. Bundle recipe and model spec into a workflow
+poly_wf <- workflow() |> 
+  add_recipe(poly_pumpkins_recipe) |> 
+  add_model(poly_spec)
+
+print("Answer 1. See above workflow.")
+\end{lstlisting}
+
+\begin{lstlisting}
+## [1] "Answer 1. See above workflow."
+\end{lstlisting}
+
+Question 2: fit a model to the pumpkins\_train data using your workflow
+and assign it to poly\_wf\_fit
+
+\begin{lstlisting}[language=R]
+# Question 2. fit a model
+poly_wf_fit <- poly_wf |> 
+  fit(data = pumpkins_train)
+
+print("Answer 2. Above, you'll see code for how we fit the model to the pumpkins training dataset. Below, you'll see the corresponding model coefficients, then subsequently 10 instances of model predictions of price (.pred) on the test set compared to actual values of price (price).")
+\end{lstlisting}
+
+\begin{lstlisting}
+## [1] "Answer 2. Above, you'll see code for how we fit the model to the pumpkins training dataset. Below, you'll see the corresponding model coefficients, then subsequently 10 instances of model predictions of price (.pred) on the test set compared to actual values of price (price)."
+\end{lstlisting}
+
+\begin{lstlisting}[language=R]
+# Print learned model coefficients
+poly_wf_fit
+\end{lstlisting}
+
+\begin{lstlisting}
+## == Workflow [trained] ==========================================================
+## Preprocessor: Recipe
+## Model: linear_reg()
+## 
+## -- Preprocessor ----------------------------------------------------------------
+## 2 Recipe Steps
+## 
+## * step_integer()
+## * step_poly()
+## 
+## -- Model -----------------------------------------------------------------------
+## 
+## Call:
+## stats::lm(formula = ..y ~ ., data = data)
+## 
+## Coefficients:
+##    (Intercept)  package_poly_1  package_poly_2  package_poly_3  package_poly_4  
+##        27.9706        103.8566       -110.9068        -62.6442          0.2677
+\end{lstlisting}
+
+\begin{lstlisting}[language=R]
+# Make price predictions on test data
+poly_results <- poly_wf_fit %>% predict(new_data = pumpkins_test) %>% 
+  bind_cols(pumpkins_test %>% select(c(package, price))) %>% 
+  relocate(.pred, .after = last_col())
+
+# Print the results
+poly_results %>% 
+  slice_head(n = 10)
+\end{lstlisting}
+
+\begin{lstlisting}
+## # A tibble: 10 x 3
+##    package              price .pred
+##    <chr>                <dbl> <dbl>
+##  1 1 1/9 bushel cartons  13.6  15.9
+##  2 1 1/9 bushel cartons  16.4  15.9
+##  3 1 1/9 bushel cartons  16.4  15.9
+##  4 1 1/9 bushel cartons  13.6  15.9
+##  5 1 1/9 bushel cartons  15.5  15.9
+##  6 1 1/9 bushel cartons  16.4  15.9
+##  7 1/2 bushel cartons    34    34.4
+##  8 1/2 bushel cartons    30    34.4
+##  9 1/2 bushel cartons    30    34.4
+## 10 1/2 bushel cartons    34    34.4
+\end{lstlisting}
+
+Now let's evaluate how the model performed on the test\_set using
+yardstick::metrics().
+
+\begin{lstlisting}[language=R]
+metrics(data = poly_results, truth = price, estimate = .pred)
+\end{lstlisting}
+
+\begin{lstlisting}
+## # A tibble: 3 x 3
+##   .metric .estimator .estimate
+##   <chr>   <chr>          <dbl>
+## 1 rmse    standard       3.27 
+## 2 rsq     standard       0.892
+## 3 mae     standard       2.35
+\end{lstlisting}
+
+Question 3: How do the performance metrics differ between the linear
+model from last week and the polynomial model we fit today? Which model
+performs better on predicting the price of different packages of
+pumpkins?
+
+Let's visualize our model results. First prep the results by binding the
+encoded package variable to them.
+
+\begin{lstlisting}[language=R]
+# question 3
+print("Question 3. These performance metrics illustrate that the polynomial model fits the data better than the linear model. We know this since the RMSE and MAE are approximately halved in this model compared to the last, and the R-squared is approximately doubled. In other words, with the polynomial model, our errors between what the model is predicting and what the true value is are much smaller, and the variability in our data is much better explained by the relationship of variables within this polynomial model.")
+\end{lstlisting}
+
+\begin{lstlisting}
+## [1] "Question 3. These performance metrics illustrate that the polynomial model fits the data better than the linear model. We know this since the RMSE and MAE are approximately halved in this model compared to the last, and the R-squared is approximately doubled. In other words, with the polynomial model, our errors between what the model is predicting and what the true value is are much smaller, and the variability in our data is much better explained by the relationship of variables within this polynomial model."
+\end{lstlisting}
+
+\begin{lstlisting}[language=R]
+# Bind encoded package column to the results
+poly_results <- poly_results |>  
+  bind_cols(package_encode |> 
+              rename(package_integer = package)) |>  
+  relocate(package_integer, .after = package)
+
+
+# Print new results data frame
+poly_results %>% 
+  slice_head(n = 5)
+\end{lstlisting}
+
+\begin{lstlisting}
+## # A tibble: 5 x 4
+##   package              package_integer price .pred
+##   <chr>                          <int> <dbl> <dbl>
+## 1 1 1/9 bushel cartons               0  13.6  15.9
+## 2 1 1/9 bushel cartons               0  16.4  15.9
+## 3 1 1/9 bushel cartons               0  16.4  15.9
+## 4 1 1/9 bushel cartons               0  13.6  15.9
+## 5 1 1/9 bushel cartons               0  15.5  15.9
+\end{lstlisting}
+
+OK, now let's take a look!
+
+Question 4: Create a scatter plot that takes the poly\_results and plots
+package vs.~price. Then draw a line showing our model's predicted values
+(.pred). Hint: you'll need separate geoms for the data points and the
+prediction line.
+
+\begin{lstlisting}[language=R]
+# Make a scatter plot
+print("Answer 4. See the below scatter plot to see the relationship between pumpkin package and price The orange line represents the model's predicted values.")
+\end{lstlisting}
+
+\begin{lstlisting}
+## [1] "Answer 4. See the below scatter plot to see the relationship between pumpkin package and price The orange line represents the model's predicted values."
+\end{lstlisting}
+
+\begin{lstlisting}[language=R]
+poly_results %>% ggplot(mapping = aes(x = package_integer, y = price)) +
+  geom_point() +
+  geom_line(mapping = aes(y = .pred), color = "orange", size = 1.2)
+\end{lstlisting}
+
+\includegraphics{Lab2_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+You can see that a curved line fits your data much better.
+
+Question 5: Now make a smoother line by using geom\_smooth instead of
+geom\_line and passing it a polynomial formula like this:
+geom\_smooth(method = lm, formula = y \textasciitilde{} poly(x, degree =
+3), color = ``midnightblue'', size = 1.2, se = FALSE)
+
+\begin{lstlisting}[language=R]
+# Make a smoother scatter plot 
+print("Answer 5. See the below scatter plot to see the relationship between pumpkin package and price. This time, the blue line represents the a 3rd degree polynomial regression that models the data.")
+\end{lstlisting}
+
+\begin{lstlisting}
+## [1] "Answer 5. See the below scatter plot to see the relationship between pumpkin package and price. This time, the blue line represents the a 3rd degree polynomial regression that models the data."
+\end{lstlisting}
+
+\begin{lstlisting}[language=R]
+poly_results %>% ggplot(mapping = aes(x = package_integer, y = price)) +
+  geom_point() +
+  geom_smooth(method = lm, formula = y ~ poly(x, degree = 3), color = "midnightblue", size = 1.2, se = FALSE)
+\end{lstlisting}
+
+\includegraphics{Lab2_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+OK, now it's your turn to go through the process one more time.
+
+Additional assignment components :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Choose a new predictor variable (anything not involving package type)
+  in this dataset.
+\end{enumerate}
+
+\begin{lstlisting}[language=R]
+print("Answer 6. I am selecting variety as my new predictor variable since this variable is highly correlated with price.")
+\end{lstlisting}
+
+\begin{lstlisting}
+## [1] "Answer 6. I am selecting variety as my new predictor variable since this variable is highly correlated with price."
+\end{lstlisting}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Determine its correlation with the outcome variable (price). (Remember
+  we calculated a correlation matrix last week)
+\end{enumerate}
+
+\begin{lstlisting}[language=R]
+cor_variety <- cor(baked_pumpkins$variety, baked_pumpkins$price)
+cor_variety
+\end{lstlisting}
+
+\begin{lstlisting}
+## [1] -0.863479
+\end{lstlisting}
+
+\begin{lstlisting}[language=R]
+print(paste0("Question 7. The correlation between pumpkin variety and pumpkin price is approx: ", round(abs(cor_variety), 2)))
+\end{lstlisting}
+
+\begin{lstlisting}
+## [1] "Question 7. The correlation between pumpkin variety and pumpkin price is approx: 0.86"
+\end{lstlisting}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\tightlist
+\item
+  Create and test a model for your new predictor: - Create a recipe -
+  Build a model specification (linear or polynomial) - Bundle the recipe
+  and model specification into a workflow - Create a model by fitting
+  the workflow - Evaluate model performance on the test data - Create a
+  visualization of model performance
+\end{enumerate}
+
+\begin{lstlisting}[language=R]
+# create recipe
+poly_pumpkins_recipe_variety <-
+  recipe(price ~ variety, data = pumpkins_train) %>%
+  step_integer(all_predictors(), zero_based = TRUE) %>% 
+  step_poly(all_predictors(), degree = 3)
+
+# Create model specification
+poly_spec_variety <- linear_reg() %>% 
+  set_engine("lm") %>% 
+  set_mode("regression")
+
+# Bundle recipe and model spec into a workflow
+poly_wf_variety <- workflow() |> 
+  add_recipe(poly_pumpkins_recipe_variety) |> 
+  add_model(poly_spec_variety)
+
+# fit a model
+poly_wf_fit_variety <- poly_wf_variety |> 
+  fit(data = pumpkins_train)
+
+# Make price predictions on test data
+poly_results_variety <- poly_wf_fit_variety %>% predict(new_data = pumpkins_test) %>% 
+  bind_cols(pumpkins_test %>% select(c(variety, price))) %>% 
+  relocate(.pred, .after = last_col())
+
+# Print the results
+poly_results_variety %>% 
+  slice_head(n = 10)
+\end{lstlisting}
+
+\begin{lstlisting}
+## # A tibble: 10 x 3
+##    variety   price .pred
+##    <chr>     <dbl> <dbl>
+##  1 PIE TYPE   13.6  16.2
+##  2 PIE TYPE   16.4  16.2
+##  3 PIE TYPE   16.4  16.2
+##  4 PIE TYPE   13.6  16.2
+##  5 PIE TYPE   15.5  16.2
+##  6 PIE TYPE   16.4  16.2
+##  7 MINIATURE  34    34.2
+##  8 MINIATURE  30    34.2
+##  9 MINIATURE  30    34.2
+## 10 MINIATURE  34    34.2
+\end{lstlisting}
+
+\begin{lstlisting}[language=R]
+# build a recipe 
+lm_pumpkins_recipe_variety <- recipe(price ~ variety, data = pumpkins_train) %>% 
+  step_integer(all_predictors(), zero_based = TRUE)
+
+# Encode package column
+variety_encode <- lm_pumpkins_recipe_variety %>% 
+  prep() %>% 
+  bake(new_data = pumpkins_test) %>% 
+  select(variety)
+\end{lstlisting}
+
+\begin{lstlisting}[language=R]
+# Bind encoded package column to the results
+poly_results_variety <- poly_results_variety |>  
+  bind_cols(variety_encode |> 
+              rename(variety_integer = variety)) |>  
+  relocate(variety_integer, .after = variety)
+
+# Print new results data frame
+poly_results_variety %>% 
+  slice_head(n = 5)
+\end{lstlisting}
+
+\begin{lstlisting}
+## # A tibble: 5 x 4
+##   variety  variety_integer price .pred
+##   <chr>              <int> <dbl> <dbl>
+## 1 PIE TYPE               3  13.6  16.2
+## 2 PIE TYPE               3  16.4  16.2
+## 3 PIE TYPE               3  16.4  16.2
+## 4 PIE TYPE               3  13.6  16.2
+## 5 PIE TYPE               3  15.5  16.2
+\end{lstlisting}
+
+\begin{lstlisting}[language=R]
+metrics(data = poly_results_variety, truth = price, estimate = .pred)
+\end{lstlisting}
+
+\begin{lstlisting}
+## # A tibble: 3 x 3
+##   .metric .estimator .estimate
+##   <chr>   <chr>          <dbl>
+## 1 rmse    standard       4.13 
+## 2 rsq     standard       0.827
+## 3 mae     standard       2.52
+\end{lstlisting}
+
+\begin{lstlisting}[language=R]
+poly_results_variety %>% ggplot(mapping = aes(x = variety_integer, y = price)) +
+  geom_point() +
+  geom_line(mapping = aes(y = .pred), color = "orange", size = 1.2)
+\end{lstlisting}
+
+\includegraphics{Lab2_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+Lab 2 due 1/24 at 11:59 PM
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+
+<!--radix_placeholder_navigation_after_body-->
+<div class="distill-site-nav distill-site-footer">
+<p>
+<a href="https://bren.ucsb.edu/"><img src="img/bren_white_logo.png" alt="Bren School logo" style="width:350px;" /></a>
+</p>
+<p>
+  This website was made with <u><a href="https://rstudio.github.io/distill/">distill by RStudio</a></u>.
+</p>
+</div>
+<!--/radix_placeholder_navigation_after_body-->
+
+
+\end{document}
