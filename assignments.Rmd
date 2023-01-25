@@ -44,7 +44,28 @@ Assigned readings and labs will be posted to this page on a weekly basis.
 
 -   [Link to .Rmd](https://github.com/MaRo406/eds-232-machine-learning/blob/main/Lab2.Rmd)
 
-    <!-- \### Assignment materials and dates -->
+## Week 3
+
+### Slides:
+
+-   Lecture 1: [Model Process and Regularized Regression](https://ucsb.box.com/s/qepqy1ndet8x51ym6rrv51y09k6qbug1)
+
+### Assigned Reading:
+
+-   [HOML Ch. 6](https://bradleyboehmke.github.io/HOML/regularized-regression.html)
+
+### Supplementary Reading:
+
+-   [Bias-Variance Scrollytelling](https://mlu-explain.github.io/bias-variance/)
+-   [Gagne et al. (2018)](https://ucsb.box.com/s/w92iwiyspdjnuoam4yjzvkzbg6qi0t4q)
+
+### Lab:
+
+-   [Link to the Lab 3 Demo](https://github.com/MaRo406/eds-232-machine-learning/blob/main/Lab3_Demo.Rmd)
+
+-   [Link to the Lab 3 Assignment](https://github.com/MaRo406/eds-232-machine-learning/blob/main/Lab3.Rmd)
+
+<!-- \### Assignment materials and dates -->
 
 <!-- | Assignment materials | Assigned | Due date | -->
 
