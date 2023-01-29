@@ -65,6 +65,20 @@ Assigned readings and labs will be posted to this page on a weekly basis.
 
 -   [Link to the Lab 3 Assignment](https://github.com/MaRo406/eds-232-machine-learning/blob/main/Lab3.Rmd)
 
+## Week 4
+
+### Slides:
+
+-   Lecture 1:
+
+### Assigned Reading:
+
+-   [HOML Ch. 5](https://bradleyboehmke.github.io/HOML/logistic-regression.html)
+
+### Supplementary Reading:
+
+### Lab:
+
 <!-- \### Assignment materials and dates -->
 
 <!-- | Assignment materials | Assigned | Due date | -->
