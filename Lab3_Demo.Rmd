@@ -23,57 +23,74 @@ ames <- AmesHousing::make_ames()
 ```{r intial_split}
 # Stratified sampling with the rsample package
 set.seed(123) #set a seed for reproducibility
-split <- 
+split <- initial_split(data = ames, 
+                       prop = .70,
+                       strata = Sale_Price) # this is our outcome variable so we want the same amounts of outcomes variables in our training and test sets
 split
-ames_train <-  
-ames_test  <- 
+ames_train <-  training(split)
+ames_test  <- testing(split)
 
-split
+ames_train
+skim(ames_train)
 ```
 
 ```{r model_data}
 #Create training feature matrices using model.matrix() (auto encoding of categorical variables)
 
-X <- 
+X <- model.matrix(Sale_Price ~ ., data = ames_train)[,-1] # taking out the "intercept" column
 
 # transform y with log() transformation
-Y <- 
+Y <- log(ames_train$Sale_Price)
 
 ```
 
 ```{r glmnet}
 #fit a ridge model, passing X,Y,alpha to glmnet()
-ridge <- 
+library(glmnet)
+ridge <- glmnet(x=X,
+                y=Y,
+                alpha = 0) # alpha = 0 corresponds to ridge rather than lasso
 
 #plot() the glmnet model object
-  
+ plot(ridge, xvar = "lambda") 
   
 ```
 
 ```{r}
 # lambdas applied to penalty parameter.  Examine the first few
-
+ridge$lambda |> head()
 
 # small lambda results in large coefficients
 coef(ridge)[c("Latitude", "Overall_QualVery_Excellent"), 100]
 
 # what about for small coefficients?
-  
+coef(ridge)[c("Latitude", "Overall_QualVery_Excellent"), 1]
+
 ```
 How much improvement to our loss function as lambda changes?
 
 ##Tuning
 ```{r cv.glmnet}
 # Apply CV ridge regression to Ames data.  Same arguments as before to glmnet()
-ridge 
+ridge <- cv.glmnet(
+  x = X,
+  y = Y,
+  alpha = 0
+) # this created a bunch of different versions of the model using ridge regression (by using different lambdas?)
 
 # Apply CV lasso regression to Ames data
-lasso 
+lasso <- cv.glmnet(
+  x = X,
+  y = Y,
+  alpha = 1
+)
 
 # plot results
 par(mfrow = c(1, 2))
 plot(ridge, main = "Ridge penalty\n\n")
 plot(lasso, main = "Lasso penalty\n\n")
+
+# the first dotted line shows for each regression, which level of lambda is best to minimize error. the second dotted line is 1 standard deviation away. in the lasso regression, you can see that the numbers at the top are different (these numbers represent how the number of features relate to the lowest value of error). anytime you see a decrease in error as the lambda gets larger, this is a signal that the model was(/is?) overfitting
 ```
 
 10-fold CV MSE for a ridge and lasso model. What's the "rule of 1 standard deviation"?
@@ -84,6 +101,7 @@ Let's examine the important parameter values apparent in the plots.
 ```{r}
 # Ridge model
 # minimum MSE
+summary(ridge)
 
 # lambda for this min MSE
 
