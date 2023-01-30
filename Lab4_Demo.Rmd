@@ -1,0 +1,86 @@
+---
+title: "Lab4_Demo"
+author: "Mateo Robbins"
+date: "2023-01-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)     # for data wrangling
+library(ggplot2)   # for awesome plotting
+library(rsample)   # for data splitting
+library(caret)     # for logistic regression modeling
+library(recipes)
+```
+Let's explore how employee income and overtime hours affect likelihood of employee attrition.  Any predictions?
+
+```{r}
+#
+data("attrition", package = "modeldata")
+
+df <- attrition %>% mutate_if(is.ordered, factor, ordered = FALSE)
+
+
+# Create training (70%) and test (30%) sets for the 
+# rsample::attrition data.
+set.seed(123)  # for reproducibility (random sample)
+churn_split <- 
+churn_train <- 
+churn_test  <- 
+```
+
+```{r recode_attrition_test}
+
+```
+
+```{r recode_attrition_train}
+churn_train <- recipe(Attrition ~ ., data = churn_train) %>%
+  step_integer(Attrition, zero_based = TRUE) %>%
+  prep(df) %>%
+  bake(df)
+```
+
+
+```{r specify_models_glm}
+#MonthlyIncome
+model1 <- 
+  
+#OverTime
+model2 <- 
+```
+
+
+```{r tidy_model_objs}
+
+
+
+```
+
+```{r exp_coefs}
+#exponentiate the coefficients from model objects for interpretation
+
+
+```
+
+```{r plot_income_attrition}
+ ggplot(churn_test, aes(x=MonthlyIncome, y=Attrition)) + geom_point() +
+      stat_smooth(method="glm",  se=TRUE,
+                method.args = list(family=binomial))
+                
+```
+
+
+
+We can add additional predictors, creating a multiple logistic regression model
+```{r mult_log_regression}
+model3 <- glm(
+  Attrition ~ MonthlyIncome + OverTime,
+  family = "binomial", 
+  data = churn_train
+  )
+
+tidy(model3)
+
+
+

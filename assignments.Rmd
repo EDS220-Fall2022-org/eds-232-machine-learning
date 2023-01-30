@@ -69,7 +69,7 @@ Assigned readings and labs will be posted to this page on a weekly basis.
 
 ### Slides:
 
--   Lecture 1:
+-   Lecture 1: [Classification and Logistic Regression](https://ucsb.box.com/s/k9vnorvgepeny78ulvku6tjqxrw8djkt)
 
 ### Assigned Reading:
 
@@ -77,7 +77,11 @@ Assigned readings and labs will be posted to this page on a weekly basis.
 
 ### Supplementary Reading:
 
+-   
+
 ### Lab:
+
+-   [Link to the Lab 4 Demo](https://raw.githubusercontent.com/MaRo406/eds-232-machine-learning/44053f8cfa4392d0a10edad2b4b3c1df83e7106e/Lab4_Demo.Rmd)
 
 <!-- \### Assignment materials and dates -->
 
