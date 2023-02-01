@@ -77,11 +77,17 @@ Assigned readings and labs will be posted to this page on a weekly basis.
 
 ### Supplementary Reading:
 
--   
+These will help you with Lab 4.
+
+-   [HOML Ch. 2.6](https://bradleyboehmke.github.io/HOML/process.html#model-eval)
+
+-   [Cansler et al. 2020: Fire Tree Mortality Database paper](https://www.nature.com/articles/s41597-020-0522-7)
 
 ### Lab:
 
 -   [Link to the Lab 4 Demo](https://raw.githubusercontent.com/MaRo406/eds-232-machine-learning/44053f8cfa4392d0a10edad2b4b3c1df83e7106e/Lab4_Demo.Rmd)
+
+-   [Link to Lab 4 Assignment](https://github.com/MaRo406/eds-232-machine-learning/blob/main/Lab4.Rmd)
 
 <!-- \### Assignment materials and dates -->
 

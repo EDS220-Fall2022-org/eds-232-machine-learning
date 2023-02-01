@@ -25,15 +25,19 @@ df <- attrition %>% mutate_if(is.ordered, factor, ordered = FALSE)
 # Create training (70%) and test (30%) sets for the 
 # rsample::attrition data.
 set.seed(123)  # for reproducibility (random sample)
+
 churn_split <- initial_split(df, prop = 0.70) # dividing into strata can help with (1) skew and (2) class imbalance
+
 churn_train <- training(churn_split)
 churn_test  <- testing(churn_split)
 ```
 
 ```{r recode_attrition_test}
+
 churn_test <- recipe(Attrition ~ ., data = churn_test) |> 
   step_integer(Attrition, zero_based = TRUE) |> 
   prep(churn_test) |> # prep helps us estimate parameters for pre-processing
+
   bake(churn_test)
 ```
 
@@ -50,22 +54,31 @@ churn_train <- recipe(Attrition ~ ., data = churn_train) %>%
 model1 <- glm(data = churn_train, Attrition ~ MonthlyIncome, family = binomial)
   
 #OverTime
+
 model2 <- glm(data = churn_train, Attrition ~ OverTime, family = binomial)
+
 ```
 
 
 ```{r tidy_model_objs}
+
 coef(model1)
 
 coef(model2)
+
+
+tidy(model1)
+tidy(model2)
 
 ```
 
 ```{r exp_coefs}
 #exponentiate the coefficients from model objects for interpretation
+
 exp(coef(model1)) # as income goes up by $1, we are actually slightly decreasing the likelihood of leaving the company. this is multiplicative so if goes up again by $1, it's .99*.99 and so on.
 
 exp(coef(model2)) # someone who works overtime is 4 times more likely to quit. since this is binary, it's either yes or no so the yes is 4x more likely to quit than the no. 
+
 
 ```
 
