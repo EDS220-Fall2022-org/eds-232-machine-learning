@@ -37,7 +37,6 @@ churn_test  <- testing(churn_split)
 churn_test <- recipe(Attrition ~ ., data = churn_test) |> 
   step_integer(Attrition, zero_based = TRUE) |> 
   prep(churn_test) |> # prep helps us estimate parameters for pre-processing
-
   bake(churn_test)
 ```
 
@@ -47,7 +46,6 @@ churn_train <- recipe(Attrition ~ ., data = churn_train) %>%
   prep(churn_train) %>%
   bake(churn_train)
 ```
-
 
 ```{r specify_models_glm}
 #MonthlyIncome
