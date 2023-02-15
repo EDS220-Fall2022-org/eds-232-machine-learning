@@ -107,6 +107,24 @@ These will help you with Lab 4.
 
 -   [Link to the Lab 5 Demo](https://github.com/MaRo406/eds-232-machine-learning/blob/main/Lab5_Demo.Rmd)
 
+-   [Lab 5 -- Updated](https://github.com/MaRo406/eds-232-machine-learning/blob/main/Lab5_update.Rmd)
+
+### Week 6
+
+### Slides:
+
+-   Lecture: [Bagging and Random Forests](https://ucsb.box.com/s/j6oxm4gct9uy1xxhv0zk42tzeqod456i)
+
+### Assigned Reading:
+
+-   [HOML Ch. 11](https://bradleyboehmke.github.io/HOML/random-forest.html)
+
+### Supplementary Reading:
+
+### Lab: 
+
+-   Demo
+
 <!-- \### Assignment materials and dates -->
 
 <!-- | Assignment materials | Assigned | Due date | -->
